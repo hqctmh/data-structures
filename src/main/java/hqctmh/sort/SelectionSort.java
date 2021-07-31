@@ -1,5 +1,8 @@
 package hqctmh.sort;
 
+import hqctmh.util.ArrayGenerator;
+import hqctmh.util.SortingHelper;
+
 import java.util.Arrays;
 import java.util.Comparator;
 
@@ -33,13 +36,11 @@ public class SelectionSort {
 
 
     public static void main(String[] args) {
-
-        Integer[] array = new Integer[5];
-        for (int i = 5; i > 0; i--) {
-            array[i - 1] = i;
+        //N方
+        int[] dataSize = {10000, 100000};
+        for (int n : dataSize) {
+            Integer[] arr = ArrayGenerator.generateRandomArray(n, n);
+            SortingHelper.sortTest("SelectionSort", arr);
         }
-
-        sort(array);
-        System.out.println(Arrays.toString(array));
     }
 }
