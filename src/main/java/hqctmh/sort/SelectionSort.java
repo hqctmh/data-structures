@@ -8,13 +8,13 @@ import java.util.Comparator;
  * @Description 选择排序
  * @Date 2021/7/31
  */
-public class  SelectionSort {
+public class SelectionSort {
 
-    public static <T> void sort(T[] array, Comparator<T> comparator) {
+    public static <T extends Comparable<T>> void sort(T[] array) {
         for (int i = 0; i < array.length; i++) {
             int minIndex = -1;
             for (int j = i + 1; j < array.length; j++) {
-                if (comparator.compare(array[i], array[j])>0) {
+                if (array[i].compareTo(array[j]) > 0) {
                     minIndex = j;
                 }
             }
@@ -36,10 +36,10 @@ public class  SelectionSort {
 
         Integer[] array = new Integer[5];
         for (int i = 5; i > 0; i--) {
-            array[i-1] = i;
+            array[i - 1] = i;
         }
 
-        sort(array, Comparator.comparingInt(i -> i));
+        sort(array);
         System.out.println(Arrays.toString(array));
     }
 }
