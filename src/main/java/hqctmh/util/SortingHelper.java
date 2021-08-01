@@ -1,6 +1,10 @@
 package hqctmh.util;
 
+import hqctmh.sort.InsertionSort;
 import hqctmh.sort.SelectionSort;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 /**
  * @Author mh
@@ -18,17 +22,16 @@ public class SortingHelper {
         return true;
     }
 
-    public static <T extends Comparable<T>> void sortTest(String sortName, T[] array) {
+    public static <T extends Comparable<T>> void sortTest(Method method , T[] array) throws InvocationTargetException, IllegalAccessException {
+
+
+
         long startTime = System.nanoTime();
-        switch (sortName) {
-            case "SelectionSort":
-                SelectionSort.sort(array);
-                break;
-        }
+        method.invoke(null, (Object) array);
         long endTime = System.nanoTime();
 
         double time = (endTime - startTime) / 1000000000.0;
-        if (isSorted(array)) {
+        if (!isSorted(array)) {
             throw new RuntimeException("sort failed");
         }
         System.out.println(time + " s");
